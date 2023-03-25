@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git check-out') {
+            steps {
+                checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/degtyarov/DevOps']])
+            }
+        }
+        stage('Check file') {
+            steps {
+                sh 'ls -la'
+                sh 'pwd'
+                sh 'cat README.md'
+            }
+        }     
+        stage('Evening') {
+            steps {
+                echo 'Good evening'
+            }
+        }
+    }
+}
